@@ -54,6 +54,7 @@ class Task {
   }
 
   async taskList() {
+    const { envExample } = this.script;
     const regx = new RegExp(
       `^[${Array.from({ length: this.scripts.length }, (_, i) => i).join("")}]$`
     );
@@ -103,7 +104,7 @@ class Task {
         this.envList = envListFilter;
         this.currentTask = this.operaterEnv;
       } else {
-        this.msg.say("暂无账号绑定\r\n回复：手机号#服务密码\r\n回 q 退出");
+        this.msg.say(`暂无账号绑定\r\n回复：${envExample}\r\n回 q 退出`);
         this.currentTask = this.bindEnv;
       }
     }
