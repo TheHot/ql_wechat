@@ -72,3 +72,9 @@ pm2 start app.js && pm2 log app
 # 日志打印二维码，微信扫码登录
 ```
 
+### 青龙脚本微信通知接口
+
+```javascript
+http://ip:3000/sendToWx?name=微信昵称&msg=通知内容
+```
+
