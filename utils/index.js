@@ -1,5 +1,7 @@
 const nodeHtmlToImage = require("node-html-to-image");
 const { FileBox } = require("file-box");
+const NodeCache = require("node-cache");
+const myCache = new NodeCache();
 
 function wait(delay) {
   return new Promise((resolve) => setTimeout(resolve, delay));
@@ -36,4 +38,5 @@ module.exports = {
   wait,
   renderHtmlToImage,
   loadScript,
+  myCache,
 };

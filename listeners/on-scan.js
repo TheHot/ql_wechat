@@ -1,16 +1,19 @@
+const { myCache } = require("../utils");
+
 /**
  * 获取二维码，登录
- * by: Peanut
  */
-async function onScan (qrcode, status) {
-  require('qrcode-terminal').generate(qrcode, {small: true})
+async function onScan(qrcode, status) {
+  require("qrcode-terminal").generate(qrcode, { small: true });
 
   const qrcodeImageUrl = [
-    'https://api.qrserver.com/v1/create-qr-code/?data=',
+    "https://api.qrserver.com/v1/create-qr-code/?data=",
     encodeURIComponent(qrcode),
-  ].join('')
+  ].join("");
 
-  console.log(status, qrcodeImageUrl)
+  myCache.set("qrcode", qrcodeImageUrl);
+
+  console.log(status, qrcodeImageUrl);
 }
 
-module.exports = onScan
+module.exports = onScan;

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>扫码登录</title>
+    <style>
+      html {
+        height: 100%;
+      }
+      body,
+      .qrcode {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .qrcode {
+        flex-direction: column;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <% if (qrcode) { %>
+    <div class="qrcode">
+      <p>请使用微信扫码登录</p>
+      <img onclick="location.reload()" src="<%= qrcode %>" alt="" />
+    </div>
+    <% } else { %>
+    <p>程序未启动或已登录，请稍后重试...</p>
+    <% } %>
+  </body>
+</html>
