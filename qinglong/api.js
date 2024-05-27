@@ -1,12 +1,6 @@
 const superagent = require("superagent");
 const QLSDK = require("./sdk");
-
-// 青龙地址
-const BASE_URL = "";
-// 青龙应用ID
-const ClientID = "";
-// 青龙应用密钥
-const ClientSecret = "";
+const { BASE_URL, ClientID, ClientSecret } = require("../config");
 
 async function ql() {
   const res = await superagent("GET", `${BASE_URL}/open/auth/token`).query({

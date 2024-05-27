@@ -2,19 +2,18 @@ const ql = require("../qinglong/api");
 const { wait } = require("../utils");
 
 module.exports = {
+  // 青龙面板应用配置
+  BASE_URL: '',
+  ClientID: '',
+  ClientSecret: '',
+  // 忽略用户消息
   IGNORE: [],
+  // 命令配置
   command: {
     menuList: [
       // 青龙变量管理
       {
-        // 指令
         cmd: "菜单",
-        /**
-         * 指令模式
-         * 
-         * ql_script - 青龙变量管理
-         * customize - 自定义：通过自定义hook来自定义指令动作
-         */
         mode: "ql_script",
         ql_script: {
           prefix: "指令如下\r\n----------------------------",
@@ -35,12 +34,12 @@ module.exports = {
               limit_total: 30,
               // 单用户可添加上限
               limit_person: 5,
+              // 用户模式：black/white
+              mode: "black",
               // 黑名单列表
               black_list: [],
               // 白名单列表
               white_list: [],
-              // 默认黑名单模式：black/white
-              mode: "black",
             },
           ],
         },

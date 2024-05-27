@@ -1,6 +1,6 @@
 FROM node:16
 
-WORKDIR /ql_wechatbot
+WORKDIR /ql_wechat
 
 COPY . ./
 

@@ -54,7 +54,6 @@ class Task {
   }
 
   async taskList() {
-    const { envExample } = this.script;
     const regx = new RegExp(
       `^[${Array.from({ length: this.scripts.length }, (_, i) => i).join("")}]$`
     );
@@ -75,6 +74,7 @@ class Task {
       this.script = script;
       this.envName = envName;
       const envList = await this._getQlEnvList();
+      if (!envList) return
       const envListFilter = envList.filter((item) => {
         if (!item.remarks || !this.contact.name()) {
           return false;
@@ -104,7 +104,7 @@ class Task {
         this.envList = envListFilter;
         this.currentTask = this.operaterEnv;
       } else {
-        this.msg.say(`暂无账号绑定\r\n回复：${envExample}\r\n回 q 退出`);
+        this.msg.say(`暂无账号绑定\r\n回复：${script.envExample}\r\n回 q 退出`);
         this.currentTask = this.bindEnv;
       }
     }
@@ -215,7 +215,7 @@ class Task {
     try {
       if (!this.ql) this.ql = await ql();
     } catch (error) {
-      this.msg.say("查询失败，请联系管理员");
+      this.msg.say("配置有误，请联系管理员！");
       this.status = "done";
       return;
     }
