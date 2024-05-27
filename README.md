@@ -14,25 +14,17 @@
 git clone https://github.com/TheHot/ql_wechat.git
 ```
 
-### 配置青龙面板地址
-
-```js
-// qinglong/api.js
-
-// 青龙地址
-const BASE_URL = "";
-// 青龙应用ID
-const ClientID = "";
-// 青龙应用密钥
-const ClientSecret = "";
-```
-
-### 自定义指令
+### 面板及指令配置
 
 ```javascript
 // config/js
 
 module.exports = {
+  // 青龙面板应用配置
+  BASE_URL: '',
+  ClientID: '',
+  ClientSecret: '',
+  // 忽略用户消息
   IGNORE: [],
   command: {
     menuList: [
@@ -98,10 +90,13 @@ http://ip:3000/sendToWx?name=微信昵称&msg=通知内容
 docker build -t ql_wechat .
 
 # 启动构建好的镜像
-docker run -dit -p 9527:3000 --name ql_wechat ql_wechat
+docker run -dit -v $HOME/ql_wechat_config:/ql_wechat/config -p 9527:3000 --name ql_wechat ql_wechat
 
 # 打开地址扫码登录
 http://ip:9527/qrcode
+
+# 配置文件已映射到宿主机HOME目录，支持热更新
+$HOME/ql_wechat_config/index.js
 ```
 
 #### 手动部署

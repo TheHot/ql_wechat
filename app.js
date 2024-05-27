@@ -2,6 +2,9 @@ const { WechatyBuilder } = require("wechaty");
 const express = require("express");
 const { renderHtmlToImage, myCache } = require("./utils");
 
+// 初始化配置文件
+require('./utils/initFile')()
+
 const app = express();
 const port = 3000;
 app.set("views", "public");
