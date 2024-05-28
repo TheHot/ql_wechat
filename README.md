@@ -125,6 +125,6 @@ pm2 start app.js && pm2 log app
 # 日志打印二维码，微信扫码登录
 ```
 
-### TG
+### TG交流群
 
 https://t.me/+1Mg7Jm9I8SFjZTk1
