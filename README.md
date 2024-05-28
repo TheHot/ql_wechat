@@ -124,3 +124,7 @@ cnpm install -g pm2
 pm2 start app.js && pm2 log app
 # 日志打印二维码，微信扫码登录
 ```
+
+### TG
+
+https://t.me/+1Mg7Jm9I8SFjZTk1
