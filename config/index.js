@@ -3,9 +3,9 @@ const { wait } = require("../utils");
 
 module.exports = {
   // 青龙面板应用配置
-  BASE_URL: '',
-  ClientID: '',
-  ClientSecret: '',
+  BASE_URL: "",
+  ClientID: "",
+  ClientSecret: "",
   // 忽略用户消息
   IGNORE: [],
   // 命令配置
@@ -26,8 +26,10 @@ module.exports = {
               envName: "chinaTelecom",
               // 变量规则校验
               regx: /^\d{11}#\d{6}$/,
+              // 自定义校验函数，返回值为校验失败的提示信息，无返回值则校验成功
+              verify: async function (context) {},
               // 变量示例
-              envExample: '手机号#服务密码',
+              envExample: "手机号#服务密码",
               // 用户可执行脚本，/script/tele.all.js
               script: "tele.all.js",
               // 变量可添加上限
@@ -51,7 +53,7 @@ module.exports = {
         white_list: ["TheHot"],
         // 处理指令回调
         async handler() {
-          this.msg.say('请回复公告内容，回 q 退出')
+          this.msg.say("请回复公告内容，回 q 退出");
         },
         // 接收用户值做回调处理
         async callback() {

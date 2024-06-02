@@ -111,7 +111,8 @@ class Task {
   }
 
   async bindEnv() {
-    let { limit_total, limit_person, regx } = this.script;
+    let { limit_total, limit_person, regx, verify } = this.script;
+    let msg = ''
     if (!regx) regx = /.*/;
     const totalEnv = await this._getQlEnvList();
     const currEnvNum = totalEnv.filter((i) => i.name === this.envName);
@@ -124,6 +125,10 @@ class Task {
       return;
     }
     if (regx.test(this.content)) {
+      if (verify && typeof verify === 'function' && (msg = await verify(this))) {
+        this.msg.say(msg);
+        return
+      }
       try {
         await this.ql.addEnv([
           {

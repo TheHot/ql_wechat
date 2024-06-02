@@ -17,7 +17,9 @@ git clone https://github.com/TheHot/ql_wechat.git
 ### 面板及指令配置
 
 ```javascript
-// config/js
+// config/index.js
+const ql = require("../qinglong/api");
+const { wait } = require("../utils");
 
 module.exports = {
   // 青龙面板应用配置
@@ -51,6 +53,11 @@ module.exports = {
               envName: "chinaTelecom",
               // 变量规则校验
               regx: /^\d{11}#\d{6}$/,
+              // 自定义校验函数，返回值为校验失败的提示信息，无返回值则校验成功
+              verify: async function (context) {
+                // context.content -- 用户回复内容
+                return yzf_verify(context.content, "电信PLUS会员");
+              },
               // 变量示例
               envExample: '手机号#服务密码',
               // 用户可执行脚本，/script/tele.all.js
@@ -90,7 +97,11 @@ http://ip:3000/sendToWx?name=微信昵称&msg=通知内容
 docker build -t ql_wechat .
 
 # 启动构建好的镜像
-docker run -dit -v $HOME/ql_wechat_config:/ql_wechat/config -p 9527:3000 --name ql_wechat ql_wechat
+docker run -dit \ 
+  -v $HOME/ql_wechat_data/config:/ql_wechat/config \
+  -v $HOME/ql_wechat_data/script:/ql_wechat/script \
+  -p 9527:3000 \
+  --name ql_wechat ql_wechat
 
 # 打开地址扫码登录
 http://ip:9527/qrcode
