@@ -17,6 +17,10 @@ RUN apt-get update && apt-get install -y \
   libxss1 \
   libgtk-3-0 \
   vim \
+  fonts-noto-cjk \
+  ttf-wqy-microhei \
+  fonts-noto-color-emoji \
+  && fc-cache -fv \
   && npm install -g cnpm --registry=https://registry.npmmirror.com && cnpm install && cnpm install -g pm2
 
 CMD pm2 start app.js && pm2 log app
